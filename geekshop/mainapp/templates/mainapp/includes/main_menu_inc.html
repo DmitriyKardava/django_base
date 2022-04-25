@@ -1,9 +1,11 @@
 <div class="header clearfix">
-    <a href="/" class="logo"></a>
+    <a href={% url 'index' %} class="logo"></a>
     <ul class="menu">
-        <li><a href="/" class="active">домой</a></li>
-        <li><a href="/products">продукты</a></li>
-        <li><a href="/contact">контакты</a></li>
+        {% with url_name=request.resolver_match.url_name %}
+        {% for name, val in menu.items %}
+        <li><a href={% url name %} class="{% if url_name == name %} active {% endif %}"> {{ val.title }} </a></li>
+        {% endfor %}
+        {% endwith %}
     </ul>
     <a href="#" class="search"></a>
 </div>
