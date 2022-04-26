@@ -1,0 +1,14 @@
+{
+    "index": {
+        "url": "",
+        "title": "Домой"
+    },
+    "products": {
+        "url": "products/",
+        "title": "Продукты"
+    },
+    "contact": {
+        "url": "contact/",
+        "title": "Контакты"
+    }
+}

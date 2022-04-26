@@ -17,9 +17,14 @@ from django.contrib import admin
 from django.urls import path
 from mainapp import views as mainapp
 
+
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', mainapp.index),
-    path('products/', mainapp.products),
-    path('contact/', mainapp.contact),
-]
+    path('admin/', admin.site.urls)]
+
+
+for (name, item) in mainapp.main_menu.items():
+    try:
+        urlpatterns.append(
+            path(item['url'], getattr(mainapp, name), name=name))
+    except AttributeError:
+        print(f'Не определено представление для {name}')
