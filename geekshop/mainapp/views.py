@@ -1,8 +1,6 @@
 import json
 from pathlib import Path
-from importlib.resources import contents
 from django.shortcuts import render
-from django.urls import reverse
 from geekshop.settings import BASE_DIR
 
 
