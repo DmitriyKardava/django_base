@@ -1,0 +1,27 @@
+[
+    {
+        "category": "Диваны",
+        "name": "Диван 1",
+        "description": "это диван 1"
+    },
+    {
+        "category": "Диваны",
+        "name": "Диван 2",
+        "description": "это диван 2"
+    },
+    {
+        "category": "Столы",
+        "name": "Стол",
+        "description": "Стол"
+    },
+    {
+        "category": "Стулья",
+        "name": "Стул",
+        "description": "Стул"
+    },
+    {
+        "category": "Комоды",
+        "name": "Комод",
+        "description": "Комод"
+    }
+]
