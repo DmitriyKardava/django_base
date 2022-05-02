@@ -9,10 +9,9 @@
 			<div class="links clearfix">
 				<ul class="links-menu">
 					<li><a href="#" class="active">все</a></li>
-					<li><a href="#">дом</a></li>
-					<li><a href="#">офис</a></li>
-					<li><a href="#">модерн</a></li>
-					<li><a href="#">классика</a></li>
+					{% for category in categories%}
+					<li><a href="#">{{category.name}}</a></li>
+					{% endfor%}
 				</ul>
 			</div>
 
@@ -64,34 +63,22 @@
 					<a class="explore" href="#">показать все <img src={% static "img/arrow.png" %} alt=""></a>
 				</div>
 				<div class="related-products clearfix">
+					{%for product in products %}
 					<div class="block">
-						<a href="#"><img src={% static "img/product-11.jpg" %} alt="">
+						<a href="#">
+							{% if product.image %}
+							<img class="product-image" src="{{ product.image.url }}" alt="">
+							{% else %}
+							<img src="{% static 'img/product-1.jpg' %}" alt="">
+							{% endif %}
 							<div class="text">
-								<img src={% static "img/icon-hover.png" %} alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
+								<img src="{% static 'img/icon-hover.png' %}" alt="img">
+								<h4>{{product.name|title}}</h4>
+								<p>{{ product.description|upper}}</p>
 							</div>
 						</a>
 					</div>
-					<div class="block">
-						<a href="#"><img src={% static "img/product-21.jpg" %} alt="">
-							<div class="text">
-								<img src={% static "img/icon-hover.png" %} alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-					<div class="block">
-						<a href="#"><img src={% static "img/product-31.jpg" %} alt="">
-							<div class="text">
-								<img src={% static "img/icon-hover.png" %} alt="img">
-								<h4>Стул повышенного качества</h4>
-								<p>Не оторваться. </p>
-							</div>
-						</a>
-					</div>
-
+					{% endfor %}
 				</div>
 			</div>
 		</div>
