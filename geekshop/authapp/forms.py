@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth.forms import UserChangeForm
 from django import forms
 from geekshop.settings import MAX_IMG_SIZE
-from .models import ShopUser
+from authapp.models import ShopUser
 
 
 class ShopUserLoginForm(AuthenticationForm):
