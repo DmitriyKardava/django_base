@@ -1208,3 +1208,19 @@ td:first-child {
 	padding: auto;
 	margin: 4px;
 }
+
+.category.related .title {
+	height: 100px;
+}
+
+.category.related .title h2 {
+	margin-top: 10px;
+}
+
+.category.related .title .explore {
+	margin-top: 10px;
+}
+
+.category.related-products {
+	margin-bottom: 10px;
+}
