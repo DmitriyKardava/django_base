@@ -4,7 +4,8 @@ from django.shortcuts import render
 from geekshop.settings import BASE_DIR
 from .models import Category, Product
 
-with open(BASE_DIR / 'mainapp' / 'data' / 'main_menu.json') as f:
+with open(BASE_DIR / 'mainapp' / 'data' / 'main_menu.json',  
+            encoding='utf-8') as f:
     main_menu = json.load(f)
 
 
