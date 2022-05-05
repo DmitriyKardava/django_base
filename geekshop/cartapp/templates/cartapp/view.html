@@ -1,0 +1,14 @@
+{% extends 'cartapp/base.html' %} 
+{% load static %}
+
+
+{% block content %}
+{% for item in cart %}
+<p> {{ item }} <a href="{% url 'cart:remove' item.id %}">Удалить</a></p>
+{% endfor %}    
+<div class="d-grid gap2 col-6 mx-auto">
+    <button class="bform-control btn btn-lg btn-light col-12">
+        <a href="{% url 'index' %}" class="">на главную </a>
+    </button>
+</div>
+{% endblock %}

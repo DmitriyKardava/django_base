@@ -16,22 +16,7 @@
 					<h2>{{ category.name }}</h2>
 				</div>
 				<div class="related-products clearfix">
-					{%for product in products %}
-					<div class="block">
-						<a href="#">
-							{% if product.image %}
-							<img class="product-image" src="{{ product.image.url }}" alt="">
-							{% else %}
-							<img src="{% static 'img/product-1.jpg' %}" alt="">
-							{% endif %}
-							<div class="text">
-								<img src="{% static 'img/icon-hover.png' %}" alt="img">
-								<h4>{{product.name|title}}</h4>
-								<p>{{ product.description|upper}}</p>
-							</div>
-						</a>
-					</div>
-					{% endfor %}
+					{% include 'mainapp/includes/product_list_inc.html' %}
 				</div>
 			</div>
 		</div>

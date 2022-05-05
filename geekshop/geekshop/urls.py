@@ -23,6 +23,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/', include('authapp.urls', namespace='auth')),
+    path('cart/', include('cartapp.urls', namespace='cart')),
     path('products/<int:pk>', mainapp.category, name='category'),
 ]
 
