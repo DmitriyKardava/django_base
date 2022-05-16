@@ -1,5 +1,6 @@
 import json
 from pathlib import Path
+from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from geekshop.settings import BASE_DIR
 from .models import Category, Product
@@ -27,7 +28,25 @@ def products(request):
                       'title': 'Продукты',
                       'menu': main_menu,
                       'categories': categories,
-                      'products': products})
+                      'products': products
+    }
+    )
+
+
+def category(request, pk):
+    categories = Category.objects.all()
+    category = get_object_or_404(Category, id=pk)
+    products = Product.objects.filter(category=category)
+
+    return render(request, Path('mainapp', 'category.html'),
+                  context={
+        'title': 'Продукты',
+        'menu': main_menu,
+        'category': category,
+        'categories': categories,
+        'products': products
+    }
+    )
 
 
 def contact(request):
