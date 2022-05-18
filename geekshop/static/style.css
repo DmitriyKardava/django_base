@@ -1224,3 +1224,15 @@ td:first-child {
 .category.related-products {
 	margin-bottom: 10px;
 }
+
+.product-image {
+	width: 220px;
+}
+
+.product-quantity {
+	max-width: 60px;
+}
+
+.product-name {
+	white-space: nowrap;
+}
