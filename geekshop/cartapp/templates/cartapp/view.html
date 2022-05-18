@@ -4,8 +4,18 @@
 
 {% block content %}
 {% for item in cart %}
-<p> {{ item }} <a href="{% url 'cart:remove' item.id %}">Удалить</a></p>
-{% endfor %}    
+<div class="cart-record">
+<span>{{ item.product.name }}</span>
+<span>{{ item.product.price }}</span>
+<span>{{ item.quantity}}</span>
+<a href="{% url 'cart:remove' item.id %}">Удалить</a>
+</div>
+{% endfor %}
+{% if cart %}
+<div class="cart-summary">
+В корзине {{ cart.quantity }} товаров на {{ cart.cost }} руб.
+</div>
+{% endif %}
 <div class="d-grid gap2 col-6 mx-auto">
     <button class="bform-control btn btn-lg btn-light col-12">
         <a href="{% url 'index' %}" class="">на главную </a>
