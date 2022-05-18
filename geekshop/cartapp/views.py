@@ -10,8 +10,7 @@ from django.urls import path
 
 def view(request):
     return render(request, 'cartapp/view.html', context={
-        'title': 'Корзина',
-        'cart': Cart.objects.filter(user=request.user)
+        'title': 'Корзина'
     })
 
 

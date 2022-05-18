@@ -3,17 +3,20 @@
 
 
 {% block content %}
-{% for item in cart %}
+{% for item in user.cart.all %}
 <div class="cart-record">
-<span>{{ item.product.name }}</span>
-<span>{{ item.product.price }}</span>
-<span>{{ item.quantity}}</span>
-<a href="{% url 'cart:remove' item.id %}">Удалить</a>
+    <img class="product-image" src="/media/{{ item.product.image }}"
+    alt="{{ item.product.description }}"
+    <span>{{ item.product.name }}</span>
+    <span>{{ item.product.price }}</span>
+    <span>{{ item.quantity}}</span>
+    <span>{{ item.cost}}</span>
+    <a href="{% url 'cart:remove' item.id %}">Удалить</a>
 </div>
 {% endfor %}
-{% if cart %}
+{% if user.cart.all %}
 <div class="cart-summary">
-В корзине {{ cart.quantity }} товаров на {{ cart.cost }} руб.
+В корзине {{ user.cart.quantity }} товаров на {{ user.cart.sum }} руб.
 </div>
 {% endif %}
 <div class="d-grid gap2 col-6 mx-auto">

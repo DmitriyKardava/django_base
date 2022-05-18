@@ -11,8 +11,8 @@ class CartManager(models.Manager):
     def quantity(self):
         return sum(item.quantity for item in self.all())
 
-    def cost(self):
-        return sum(item.product.pice * item.quantity for item in self.all())
+    def sum(self):
+        return sum(item.product.price * item.quantity for item in self.all())
 
 
 class Cart(models.Model):
@@ -22,6 +22,10 @@ class Cart(models.Model):
     quantity = models.PositiveSmallIntegerField(default=1)
     created_at = models.DateTimeField(auto_now_add=True)
     objects = CartManager()
+
+    @property
+    def cost(self):
+        return self.quantity * self.product.price
 
     def __str__(self):
         return f'{self.product} - {self.quantity} шт.'
