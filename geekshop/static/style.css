@@ -1009,6 +1009,11 @@ td:first-child {
 	height: 570px;
 }
 
+.slider-product img {
+	width: 570px;
+	height: 570px;
+}
+
 .slider-control {
 	width: 420px;
 	height: 70px;
@@ -1023,6 +1028,13 @@ td:first-child {
 	float: left;
 	margin-right: 10px;
 }
+
+.slider-control .block img {
+	height: 70px;
+	width: 70px;
+	margin-right: 10px;
+}
+
 
 .slider-control a .text {
 	display: none;
