@@ -7,4 +7,5 @@ urlpatterns = [
     path('', cartapp.view, name='view'),
     path('add/<int:product_id>/', cartapp.add, name='add'),
     path('remove/<int:cart_id>/', cartapp.remove, name='remove'),
+    path('edit/<int:pk>/<int:quantity>/', cartapp.basket_edit, name='edit')
 ]
