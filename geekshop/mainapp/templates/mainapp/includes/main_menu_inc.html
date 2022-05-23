@@ -5,8 +5,13 @@
         {% for name, val in menu.items %}
         <li><a href={% url name %} class="{% if url_name == name %} active {% endif %}"> {{ val.title }} </a></li>
         {% endfor %}
-        {% if user.is_authenticated %} 
+        {% if user.is_authenticated %}
             <li><a href="{% url 'auth:edit' %}">{{ user.username|default:'Пользователь' }}</a> </li>
+        {% endif %}
+        {% if user.is_superuser %}
+            <li><a href="{% url 'admin:users' %}">админка</a></li>
+        {% endif %}
+        {% if user.is_authenticated %}
             <li><a href="{% url 'cart:view' %}">Корзина ({{request.user.cart.all|length}})</a></li>
             <li><a href="{% url 'auth:logout' %}">выйти</a></li>
         {% else %} 

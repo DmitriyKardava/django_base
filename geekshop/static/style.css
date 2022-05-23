@@ -1224,3 +1224,7 @@ td:first-child {
 .category.related-products {
 	margin-bottom: 10px;
 }
+
+.category_record.not_active {
+	opacity: 0.5;
+}
