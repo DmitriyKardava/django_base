@@ -7,7 +7,8 @@
         {% endfor %}
         {% if user.is_authenticated %} 
             <li><a href="{% url 'auth:edit' %}">{{ user.username|default:'Пользователь' }}</a> </li>
-            <li><a href="{% url 'cart:view' %}">Корзина ({{request.user.cart.all|length}})</a></li>
+            <li><a href="{% url 'cart:view' %}">Корзина ({{request.user.cart.all|length}})</a>
+            </li>
             <li><a href="{% url 'auth:logout' %}">выйти</a></li>
         {% else %} 
             <li><a href="{% url 'auth:login' %}">войти</a></li>

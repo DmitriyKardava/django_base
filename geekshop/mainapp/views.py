@@ -1,12 +1,13 @@
 import json
+import random
 from pathlib import Path
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from geekshop.settings import BASE_DIR
 from .models import Category, Product
 
-with open(BASE_DIR / 'mainapp' / 'data' / 'main_menu.json', 'r', 
-            encoding='utf-8') as f:
+with open(BASE_DIR / 'mainapp' / 'data' / 'main_menu.json', 'r',
+          encoding='utf-8') as f:
     main_menu = json.load(f)
 
 
@@ -22,13 +23,29 @@ def index(request):
 def products(request):
     categories = Category.objects.all()
     products = Product.objects.all()
-
+    hot_product = random.choice(products)
+    products = products.exclude(pk=hot_product.pk)[:3]
     return render(request, Path('mainapp', 'products.html'),
                   context={
                       'title': 'Продукты',
                       'menu': main_menu,
                       'categories': categories,
-                      'products': products
+                      'products': products,
+                      'hot_product': hot_product
+    }
+    )
+
+
+def product(request, pk):
+    categories = Category.objects.all()
+    product = get_object_or_404(Product, pk=pk)
+    return render(request, Path('mainapp', 'product.html'),
+                  context={
+                      'title': product.name,
+                      'menu': main_menu,
+                      'categories': categories,
+                      'category': product.category,
+                      'product': product
     }
     )
 
