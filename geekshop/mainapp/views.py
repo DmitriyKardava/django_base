@@ -5,6 +5,7 @@ from django.shortcuts import get_object_or_404
 from django.shortcuts import render
 from geekshop.settings import BASE_DIR
 from .models import Category, Product
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 with open(BASE_DIR / 'mainapp' / 'data' / 'main_menu.json', 'r',
           encoding='utf-8') as f:
