@@ -14,9 +14,10 @@
     method="post">
     {% csrf_token %}
     <input class="btn btn-danger" type="submit" value="удалить">
+    <button class="btn btn-success">
+        <a href="{% url 'admin:users' %}">Отмена</a>
+    </button>
 </form>
-<button class="btn btn-success">
-    <a href="{% url 'admin:users' %}">Отмена</a>
-</button>
+
 </div>
 {% endblock %}

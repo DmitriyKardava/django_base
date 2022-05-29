@@ -1,22 +1,29 @@
 from django import forms
 from authapp.models import ShopUser
-from authapp.forms import ShopUserEditForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from mainapp.models import Category
 
 
-class ShopUserAdminEditForm(ShopUserEditForm):
+class ShopUserAdminEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
         fields = '__all__'
 
 
-class ProductCategoryEditForm(forms.ModelForm): 
+class ShopUserAdminCreateForm(UserCreationForm):
+    class Meta:
+        model = ShopUser
+        fields = ('username', 'first_name', 'last_name', 'avatar', 'age')
+
+
+class ProductCategoryEditForm(forms.ModelForm):
     class Meta:
         model = Category
         fields = '__all__'
-    
-    def __init__(self, *args, **kwargs): 
+
+    def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
+
