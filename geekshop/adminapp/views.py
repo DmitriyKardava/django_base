@@ -3,8 +3,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import user_passes_test
 from authapp.models import ShopUser
 from mainapp.models import Product, Category
-from authapp.forms import ShopUserRegisterForm
-from adminapp.forms import ShopUserAdminEditForm
+from adminapp.forms import ShopUserAdminEditForm, ShopUserAdminCreateForm, ProductCategoryEditForm
 
 
 @user_passes_test(lambda u: u.is_superuser)
@@ -20,12 +19,12 @@ def users(request):
 def user_create(request):
     title = 'пользователи/новый'
     if request.method == 'POST':
-        user_form = ShopUserRegisterForm(request.POST, request.FILES)
+        user_form = ShopUserAdminCreateForm(request.POST, request.FILES)
         if user_form.is_valid():
             user_form.save()
             return HttpResponseRedirect(reverse('admin:users'))
     else:
-        user_form = ShopUserRegisterForm()
+        user_form = ShopUserAdminCreateForm()
 
     content = {'title': title, 'update_form': user_form}
     return render(request, 'adminapp/user_update.html', content)
@@ -40,7 +39,7 @@ def user_update(request, pk):
             request.POST, request.FILES, instance=edit_user)
         if edit_form.is_valid():
             edit_form.save()
-            return HttpResponseRedirect(reverse('admin:user_update', args=[edit_user.pk]))
+            return HttpResponseRedirect(reverse('admin:users'))
     else:
         edit_form = ShopUserAdminEditForm(instance=edit_user)
 
@@ -56,7 +55,7 @@ def user_delete(request, pk):
         user.is_active = False
         user.save()
         return HttpResponseRedirect(reverse('admin:users'))
-    
+
     content = {'title': title, 'user_to_delete': user}
     return render(request, 'adminapp/user_delete.html', content)
 
@@ -71,17 +70,47 @@ def categories(request):
 
 @user_passes_test(lambda u: u.is_superuser)
 def category_create(request):
-    pass
+    title = 'админка/новая категория'
+    if request.method == 'POST':
+        category_form = ProductCategoryEditForm(request.POST, request.FILES)
+        if category_form.is_valid():
+            category_form.save()
+            return HttpResponseRedirect(reverse('admin:categories'))
+    else:
+        category_form = ProductCategoryEditForm()
+
+    content = {'title': title, 'update_form': category_form}
+    return render(request, 'adminapp/category_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def category_update(request, pk):
-    pass
+    title = 'категории/редактирование'
+    edit_category = get_object_or_404(Category, pk=pk)
+    if request.method == 'POST':
+        edit_form = ProductCategoryEditForm(
+            request.POST, request.FILES, instance=edit_category)
+        if edit_form.is_valid():
+            edit_form.save()
+            return HttpResponseRedirect(reverse('admin:categories'))
+    else:
+        edit_form = ProductCategoryEditForm(instance=edit_category)
+
+    content = {'title': title, 'update_form': edit_form}
+    return render(request, 'adminapp/category_update.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
 def category_delete(request, pk):
-    pass
+    title = 'rfntujhbb/удаление'
+    category = get_object_or_404(Category, pk=pk)
+    if request.method == 'POST':
+        category.is_active = False
+        category.save()
+        return HttpResponseRedirect(reverse('admin:categories'))
+
+    content = {'title': title, 'category_to_delete': category}
+    return render(request, 'adminapp/category_delete.html', content)
 
 
 @user_passes_test(lambda u: u.is_superuser)
