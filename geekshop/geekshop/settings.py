@@ -9,8 +9,9 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-
+import environ
 from pathlib import Path
+from django.core.mail.backends import smtp
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -140,3 +141,14 @@ MEDIA_ROOT = BASE_DIR / 'media'
 AUTH_USER_MODEL = 'authapp.ShopUser'
 
 MAX_IMG_SIZE = 2621440
+
+env = environ.Env()
+environ.Env.read_env()
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = env.str('EMAIL_HOST')
+EMAIL_PORT = env.int('EMAIL_PORT')
+EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWD = env.str('EMAIL_HOST_PASSWD')
+EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
+EMAIL_USE_SSL = env.bool('EMAIL_USE_TLS')

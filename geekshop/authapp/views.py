@@ -4,6 +4,7 @@ from django.contrib import auth
 from django.urls import reverse
 from authapp.forms import ShopUserRegisterForm
 from authapp.forms import ShopUserEditForm
+from .email import send_verification_email
 
 # Create your views here.
 
@@ -36,7 +37,8 @@ def register(request):
         register_form=ShopUserRegisterForm(request.POST, request.FILES)
 
         if register_form.is_valid():
-            register_form.save()
+            user = register_form.save()
+            send_verification_email(user)
             return HttpResponseRedirect(reverse('auth:login'))
     else:
         register_form=ShopUserRegisterForm()
