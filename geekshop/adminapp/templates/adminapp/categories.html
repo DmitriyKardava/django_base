@@ -11,7 +11,7 @@
             <th>Описание</th>
             <th></th>
         </tr>
-    {% for object in objects %} 
+    {% for object in object_list %} 
     <tr {% if object.is_active != True %} class="bg-secondary"{% endif %}> 
         <td class="category_name">{{ object.name|title }} </td>
         <td class="category_desc">{{ object.description|title }} </td>
@@ -31,4 +31,7 @@
     {% endfor%}
     </table>
 </div>
+<div class="explore">
+    {% include 'mainapp/includes/inc_paginator_control.html' %}
+ </div>
 {% endblock %}
