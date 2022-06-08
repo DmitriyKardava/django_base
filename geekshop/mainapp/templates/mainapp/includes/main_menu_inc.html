@@ -2,22 +2,26 @@
     <a href={% url 'index' %} class="logo"></a>
     <ul class="menu">
         {% with url_name=request.resolver_match.url_name %}
-        {% for name, val in menu.items %}
-        <li><a href={% url name %} class="{% if url_name == name %} active {% endif %}"> {{ val.title }} </a></li>
-        {% endfor %}
+            {% for name, val in menu.items %}
+                <li><a href={% url name %} class="{% if url_name == name %} active {% endif %}"> {{ val.title }} </a></li>
+            {% endfor %}
         {% if user.is_authenticated %}
-            <li><a href="{% url 'auth:edit' %}">{{ user.username|default:'Пользователь' }}</a> </li>
+            <li>
+                <div class="dropdown">
+                    <a href]'#'>{{ user.username|default:'Пользователь' }}</a>
+                    <div class="dropdown-content">
+                        <a href="{% url 'auth:edit' %}">Профиль</a>
+                        <a href="{% url 'cart:view' %}">Корзина&nbsp;({{request.user.cart.all|length}})</a>
+                        <a href="{% url 'auth:logout' %}">выйти</a>
+                    </div>
+                </div>
+            </li>
         {% endif %}
         {% if user.is_superuser %}
             <li><a href="{% url 'admin:users' %}">админка</a></li>
         {% endif %}
-        {% if user.is_authenticated %}
-            <li><a href="{% url 'cart:view' %}">Корзина ({{request.user.cart.all|length}})</a></li>
-            <li><a href="{% url 'auth:logout' %}">выйти</a></li>
-        {% else %} 
             <li><a href="{% url 'auth:login' %}">войти</a></li>
             <li><a href="{% url 'auth:register'%}">регистрация</a></li>
-        {% endif %}
         {% endwith %}
         <li><a href="#" class="search"></a></li>
     </ul>
