@@ -11,17 +11,20 @@
                     <a href]'#'>{{ user.username|default:'Пользователь' }}</a>
                     <div class="dropdown-content">
                         <a href="{% url 'auth:edit' %}">Профиль</a>
+                        {% if user.is_superuser %}
+                            <a href="{% url 'admin:users' %}">админка</a>
+                        {% endif %}
                         <a href="{% url 'cart:view' %}">Корзина&nbsp;({{request.user.cart.all|length}})</a>
+                        <a href="{% url 'orders:list' %}">Заказы</a>
                         <a href="{% url 'auth:logout' %}">выйти</a>
                     </div>
                 </div>
             </li>
-        {% endif %}
-        {% if user.is_superuser %}
-            <li><a href="{% url 'admin:users' %}">админка</a></li>
-        {% endif %}
+            
+        {% else %}
             <li><a href="{% url 'auth:login' %}">войти</a></li>
             <li><a href="{% url 'auth:register'%}">регистрация</a></li>
+        {% endif %}
         {% endwith %}
         <li><a href="#" class="search"></a></li>
     </ul>

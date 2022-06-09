@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% load static %} 
+<html>
+<head>
+    <meta charset="utf-8"> 
+    <title>
+        {% block title %}
+            {{ title|title }}
+        {% endblock %} 
+    </title>
+
+    {% block css %}
+        <link rel="stylesheet" type="text/css" href="{% static 'style.css' %}">
+        <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
+    {% endblock %}
+    
+    {% block js %}
+    {% endblock %}
+
+</head>
+<body>
+    <div class="container">
+            <div class="h2 text-center head">
+                {{ title }} 
+            </div>
+            <div class="form-group mx-auto">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="d-grid gap2 col-3 mx-auto">
+                <button class="bform-control btn btn-lg btn-light col-12">
+                    <a href="{% url 'index' %}" class="">на главную </a>
+                </button>
+            </div>
+    </div> 
+</body>
+</html>
