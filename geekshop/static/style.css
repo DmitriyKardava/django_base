@@ -51,7 +51,6 @@ body {
 	color: #8c8c8c;
 	font-size: 14px;
 	font-weight: 700;
-	text-align: right;
 	text-transform: uppercase;
 	text-decoration: none;
 	padding: 10px 13px;
@@ -1239,6 +1238,7 @@ td:first-child {
 
 .category_record.not_active {
 	opacity: 0.5;
+}
 
 .product-image {
 	width: 220px;
