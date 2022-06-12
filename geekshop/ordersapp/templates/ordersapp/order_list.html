@@ -18,7 +18,7 @@
         <td>{{ object.created_at|date:"d/m/Y H:i:s" }} </td>
         <td>{{ object.get_status_display }} </td>
         <td> 
-            <a href="#">редактировать</a> 
+            <a href="{% url 'orders:update' object.pk %}">редактировать</a> 
         </td>
         <td>
             {% if object.can_pay %}
