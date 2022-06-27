@@ -29,8 +29,6 @@ urlpatterns = [
     path('products/all/', mainapp.products, name='products_all'),
     path('product/<int:pk>/', mainapp.product, name='product'),
 ]
-
-
 for (name, item) in mainapp.main_menu.items():
     try:
         urlpatterns.append(
