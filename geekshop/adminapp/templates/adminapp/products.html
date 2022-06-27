@@ -11,7 +11,7 @@
             <div class="product_name"> {{ object.name|title }}</div>
             <div class="product_actions">
                 <button>
-                    <a href={% url 'admin:product_read' object.pk %}>подробнее</a>
+                    <a href={% url 'admin:products' object.pk %}>подробнее</a>
                 </button>
                 <button>
                     <a href={% url 'admin:product_update' object.pk %}>редактировать</a>
