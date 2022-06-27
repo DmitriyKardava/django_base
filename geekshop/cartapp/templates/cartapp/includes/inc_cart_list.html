@@ -30,9 +30,11 @@
 В корзине {{ user.cart.quantity }} товаров на {{ user.cart.sum }} руб.
 </div>
 {% endif %}
+{% if user.cart.quantity %}
 <div class="d-grid gap2 col-6 mx-auto">
     <button class="bform-control btn btn-lg btn-light col-12">
-        <a href="{% url 'index' %}" class="">на главную </a>
+        <a href="{% url 'orders:create' %}">Создать заказ</a>
     </button>
 </div>
+{% endif %}
 </div>

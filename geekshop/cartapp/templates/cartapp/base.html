@@ -34,6 +34,11 @@
         <div class="form-group d-grid gap2 col-6 mx-auto">
             {% block content %}
             {% endblock %}
+        </div>
+        <div class="d-grid gap2 col-3 mx-auto">
+            <button class="bform-control btn btn-lg btn-light col-12">
+                <a href="{% url 'index' %}" class="">на главную </a>
+            </button>
         </div> 
     </div> 
 </body>

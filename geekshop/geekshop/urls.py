@@ -24,10 +24,9 @@ urlpatterns = [
     path('admin/', include('adminapp.urls', namespace='admin')),
     path('auth/', include('authapp.urls', namespace='auth')),
     path('cart/', include('cartapp.urls', namespace='cart')),
+    path('orders/', include('ordersapp.urls', namespace='orders')),
     path('products/<int:pk>/', mainapp.category, name='category'),
-    path('products/all/<int:page>/', mainapp.products, name='products_all'),
     path('products/all/', mainapp.products, name='products_all'),
-    path('products/<int:pk>/<int:page>/', mainapp.category, name='category'),
     path('product/<int:pk>/', mainapp.product, name='product'),
 ]
 for (name, item) in mainapp.main_menu.items():

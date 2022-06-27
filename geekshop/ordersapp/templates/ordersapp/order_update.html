@@ -1,0 +1,23 @@
+{% extends 'ordersapp/base.html' %}
+{% load static %}
+{% block content %}
+    <form class="form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {% for hidden in form.hidden_fielsd %}
+            {{ hidden }}
+        {% endfor %}
+
+        {{ orderitems.management_form }}
+        {% for item_form in orderitems %}
+            <fieldset>
+             {{ item_form}}
+            </fieldset>
+        {% endfor %}
+        <div class="row col-6 mx-auto">
+            <input class="form-control col-sm" type="submit" value="сохранить">
+            <button class="btn btn-round form-control col-sm">
+                <a href="{% url 'orders:list' %}"> к списку заказов</a>
+            </button>
+        </div>
+    </form>
+{% endblock %}

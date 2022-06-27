@@ -1,0 +1,37 @@
+{% extends 'ordersapp/base.html' %} 
+{% load static %}
+{% block content %}
+<div class="">
+    <button class="new_category btn btn-light">
+        <a href="#">новый заказ </a>
+    </button>
+    <table class="table">
+        <tr>
+            <th>Создан</th>
+            <th>Статус</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    {% for object in object_list %} 
+    <tr> 
+        <td>{{ object.created_at|date:"d/m/Y H:i:s" }} </td>
+        <td>{{ object.get_status_display }} </td>
+        <td> 
+            <a href="{% url 'orders:update' object.pk %}">редактировать</a> 
+        </td>
+        <td>
+            {% if object.can_pay %}
+            <a href="{% url 'orders:pay' object.pk %}">оплатить</a>
+            {% endif %} 
+        </td> 
+        <td>
+            {% if object.can_cancel %}
+            <a href="{% url 'orders:cancel' object.pk %}">отменить</a>
+            {% endif %}
+        </td>
+    </tr> 
+    {% endfor%}
+    </table>
+</div>
+{% endblock %}
