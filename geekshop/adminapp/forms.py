@@ -4,7 +4,6 @@ from django.forms.widgets import HiddenInput
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 from mainapp.models import Category, Product
 
-
 class ShopUserAdminEditForm(UserChangeForm):
     class Meta:
         model = ShopUser
@@ -39,4 +38,3 @@ class ProductEditForm(forms.ModelForm):
         for field_name, field in self.fields.items():
             field.widget.attrs['class'] = 'form-control'
             field.help_text = ''
-            

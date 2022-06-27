@@ -1,3 +1,4 @@
+{% load carttags %} 
 <div class="cart_list">
 <table class="table align-middle">
     <thead>
@@ -14,7 +15,7 @@
       <tbody>
         {% for item in user.cart.all %}
         <tr>
-            <td  class="align-middle"><img class="product-image" src="/media/{{ item.product.image }}"
+            <td  class="align-middle"><img class="product-image" src="{{ item.product.image|cart_folder }}"
             alt="{{ item.product.description }}"</td>
             <td class="product-name align-middle">{{ item.product.name }}</td>
             <td class="align-middle">{{ item.product.price }}</td>

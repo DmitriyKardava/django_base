@@ -1,7 +1,10 @@
-from mimetypes import init
-from unicodedata import category
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, render, HttpResponseRedirect
 from django.urls import reverse
+from django.views.generic import ListView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
+from django.utils.decorators import method_decorator
 from django.contrib.auth.decorators import user_passes_test
 from authapp.models import ShopUser
 from mainapp.models import Product, Category
@@ -143,7 +146,6 @@ def product_create(request, category_pk):
 
     content = {'title': title, 'update_form': form}
     return render(request, 'adminapp/product_update.html', content)
-
 
 @user_passes_test(lambda u: u.is_superuser)
 def product_update(request, product_pk):

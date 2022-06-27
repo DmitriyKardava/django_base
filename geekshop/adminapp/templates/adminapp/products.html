@@ -5,30 +5,39 @@
         <button class="new_product">
             <a href={% url 'admin:product_create' category.pk %}>новый продукт</a>
         </button>
-        {% for object in objects %} 
-        <div class="product_record">
-            <img src="/media/{{object.image|default:'products_images/default.jpg'}}" alt="{{ object.name }}">
-            <div class="product_name"> {{ object.name|title }}</div>
-            <div class="product_actions">
-                <button>
-                    <a href={% url 'admin:products' object.pk %}>подробнее</a>
-                </button>
-                <button>
-                    <a href={% url 'admin:product_update' object.pk %}>редактировать</a>
-                </button>
-                <button>
-                    <a href={% url 'admin:product_delete' object.pk %}>удалить</a>
-                </button>
-            </div>
-            <div class="summary">
-                <b>цена</b>
-                <p>{{ object.price }} руб</p> <b>количество</b>
-                <p>{{ object.quantity }}</p>
-            </div>
-            <div class="product_desc">
-                {{ object.short_desc|title }}
-            </div>
-        </div> 
+        <table>
+            <tr>
+                <th>Изображение</th>
+                <th>Название</th>
+                <th>Цена</th>
+                <th>Количество</th>
+                <th>Описание</th>
+                <th></th>
+                <th></th>
+            </tr>
+        {% for object in object_list %} 
+            <tr {% if object.is_active != True %} class="bg-secondary"{% endif %}>
+                <td>
+                    <img src="/media/{{object.image|default:'products_images/default.jpg'}}" alt="{{ object.name }}">
+                </td>
+                <td> {{ object.name|title }}</td>
+                <td>{{ object.price }} руб</td>
+                <td>{{ object.quantity }}</td>
+                <td>{{ object.short_desc|title }}</td>
+                <td>
+                    <button>
+                        <a href={% url 'admin:product_update' object.pk %}>редактировать</a>
+                    </button>
+                </td>
+                <td>
+                    <button>
+                        <a href={% url 'admin:product_delete' object.pk %}>удалить</a>
+                    </button>
+                </td> 
         {% endfor%}
-    </div>
+    </table>
+</div>
+<div class="explore">
+    {% include 'mainapp/includes/inc_paginator_control.html' %}
+</div>
 {% endblock %}

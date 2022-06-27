@@ -10,7 +10,6 @@
 			<div class="links clearfix">
 				{% include 'mainapp/includes/category_menu_inc.html' %}
 			</div>
-
 			<div class="details-products">
 				{% if hot_product.image %}
 				<div class="details-slider">
@@ -53,7 +52,14 @@
 			<div class="related">
 				<div class="title clearfix">
 					<h2>Похожие продукты</h2>
-					<a class="explore" href="#">показать все <img src={% static "img/arrow.png" %} alt=""></a>
+					<span class="explore">
+						{% if products.has_previous %}
+						<a href="{% url 'products_all' products.previous_page_number %}">Предыдущая страница</a>
+						{% endif %}
+						{% if products.has_next %}
+						<a href="{% url 'products_all' products.next_page_number %}">Следующая страница</a>
+						{% endif %}
+					</span>
 				</div>
 				<div class="related-products clearfix">
 					{% include 'mainapp/includes/product_list_inc.html' %}
