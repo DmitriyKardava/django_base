@@ -14,23 +14,25 @@
         <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}">
         <link rel="stylesheet" href="{% static 'fonts/font-awesome/css/font-awesome.css' %}">
     {% endblock %}
-
+    
     {% block js %}
     {% endblock %}
 
 </head>
 <body>
     <div class="container">
-        <div class="h2 text-center head">
+            <div class="h2 text-center head">
                 {{ title }} 
-        </div>
-        <a href="/">На главную</a>
-        <a href="/admin/users">Пользователи</a>
-        <a href="/admin/categories">Категории</a>
-        <div class="form-group mx-auto">
-            {% block content %}
-            {% endblock %}
-        </div>
+            </div>
+            <div class="container form-group mx-auto">
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="d-grid gap2 col-3 mx-auto">
+                <button class="bform-control btn btn-lg btn-light col-12">
+                    <a href="{% url 'index' %}" class="">на главную </a>
+                </button>
+            </div>
     </div> 
 </body>
 </html>

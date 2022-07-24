@@ -1,3 +1,4 @@
+{% load carttags %} 
 <div class="cart_list">
 <table class="table align-middle">
     <thead>
@@ -13,12 +14,12 @@
       <tbody>
         {% for item in user.cart.all %}
         <tr>
-            <td  class="align-middle"><img class="product-image" src="/media/{{ item.product.image }}"
+            <td  class="align-middle"><img class="product-image" src="{{ item.product.image|cart_folder }}"
             alt="{{ item.product.description }}"</td>
             <td class="product-name align-middle">{{ item.product.name }}</td>
             <td class="align-middle">{{ item.product.price }}</td>
             <td class="align-middle"><input class="product-quantity" type="number" name="{{ item.pk }}" min="0" value="{{ item.quantity}}"></td>
-            <td class="align-middle">{{ item.cost}}</td>
+            <td class="align-middle">{{ item.cost }}</td>
             <td class="align-middle"><a href="{% url 'cart:remove' item.id %}">Удалить</a></td>
         </tr>
     {% endfor %}
@@ -29,9 +30,11 @@
 В корзине {{ user.cart.quantity }} товаров на {{ user.cart.sum }} руб.
 </div>
 {% endif %}
+{% if user.cart.quantity %}
 <div class="d-grid gap2 col-6 mx-auto">
     <button class="bform-control btn btn-lg btn-light col-12">
-        <a href="{% url 'index' %}" class="">на главную </a>
+        <a href="{% url 'orders:create' %}">Создать заказ</a>
     </button>
 </div>
+{% endif %}
 </div>
