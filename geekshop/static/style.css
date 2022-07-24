@@ -1239,6 +1239,7 @@ td:first-child {
 
 .category_record.not_active {
 	opacity: 0.5;
+}
 
 .product-image {
 	width: 220px;
@@ -1251,4 +1252,8 @@ td:first-child {
 .product-name {
 	white-space: nowrap;
 
+}
+
+.login-btn {
+	margin: 8px;
 }
