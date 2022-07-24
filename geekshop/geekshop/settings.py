@@ -9,7 +9,8 @@ https://docs.djangoproject.com/en/3.2/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
-import environ
+import os
+
 from pathlib import Path
 from django.core.mail.backends import smtp
 
@@ -26,7 +27,11 @@ SECRET_KEY = 'django-insecure-n4!)cmfa$m6k6zk1)f4z3j9@%2#&-ts=o(=wuux4p)#3b)y#h(
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'geekshop.hobri.ru',
+    'localhost',
+    '127.0.0.1',
+]
 
 
 # Application definition
@@ -38,6 +43,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+
+    'social_django',
 
     'mainapp',
     'authapp',
@@ -107,7 +114,34 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 LOGIN_URL = "auth:login"
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+SOCIAL_AUTH_LOGIN_ERROR_URL = '/login-error/'
 
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+AUTHENTICATION_BACKENDS = [
+    'social_core.backends.mailru.MRGOAuth2',
+    'social_core.backends.google.GoogleOAuth2',
+    'social_core.backends.github.GithubOAuth2',
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_GOOGLE_OAUTH2_KEY')
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.environ.get(
+    'SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET')
+
+SOCIAL_AUTH_MAILRU_KEY = os.environ.get('SOCIAL_AUTH_MAILRU_KEY')
+SOCIAL_AUTH_MAILRU_SECRET = os.environ.get('SOCIAL_AUTH_MAILRU_SECRET')
+
+SOCIAL_AUTH_GITHUB_KEY = os.environ.get('SOCIAL_AUTH_GITHUB_KEY')
+SOCIAL_AUTH_GITHUB_SECRET = os.environ.get('SOCIAL_AUTH_GITHUB_SECRET')
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_KEY')
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.environ.get('SOCIAL_AUTH_VK_OAUTH2_SECRET')
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -143,13 +177,11 @@ AUTH_USER_MODEL = 'authapp.ShopUser'
 
 MAX_IMG_SIZE = 2621440
 
-env = environ.Env()
-environ.Env.read_env()
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = env.str('EMAIL_HOST')
-EMAIL_PORT = env.int('EMAIL_PORT')
-EMAIL_HOST_USER = env.str('EMAIL_HOST_USER')
-EMAIL_HOST_PASSWD = env.str('EMAIL_HOST_PASSWD')
-EMAIL_USE_SSL = env.bool('EMAIL_USE_SSL')
-EMAIL_USE_SSL = env.bool('EMAIL_USE_TLS')
+EMAIL_HOST = os.environ.get('EMAIL_HOST')
+EMAIL_PORT = os.environ.get('EMAIL_PORT')
+EMAIL_HOST_USER = os.environ.get('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWD = os.environ.get('EMAIL_HOST_PASSWD')
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_SSL')
+EMAIL_USE_SSL = os.environ.get('EMAIL_USE_TLS')

@@ -5,8 +5,12 @@
         {% csrf_token %}
         {{ login_form.as_p }}
         <br>
-        <div class="d-grid gap2 col-6 mx-auto">
-            <input class="btn btn-lg btn-primary form-control" type="submit" value="войти">
-        </div>    
+        <div class="btn-group" role="group" aria-label="Login">
+            <input class="login-btn btn btn-lg btn-primary form-control" type="submit" value="Вход">
+            <a class="login-btn btn btn-lg btn-primary form-control" href="{% url 'social:begin' 'google-oauth2' %}">Google+</a>
+            <a class="login-btn btn btn-lg btn-primary form-control" href="{% url 'social:begin' 'vk-oauth2' %}">VK</a>
+            <a class="login-btn btn btn-lg btn-primary form-control" href="{% url 'social:begin' 'mailru' %}">Mail.ru</a>
+            <a class="login-btn btn btn-lg btn-primary form-control" href="{% url 'social:begin' 'github' %}">Github</a>
+        </div>
     </form> 
 {% endblock %}
