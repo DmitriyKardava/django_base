@@ -3,7 +3,9 @@
 {% block content %}
 <form class="form-horizontal" action="{% url 'auth:edit' %}" method="post"
 enctype="multipart/form-data"> 
-{% csrf_token %}{{ edit_form.as_p }}
+{% csrf_token %}
+{{ edit_form.as_p }}
+{{ profile_form.as_p }}
 <div class="d-grid gap2 col-12 mx-auto">
     <input class="form-control btn btn-lg btn-primary col-4 mr-4" type="submit" value="сохранить"> 
     <button class="bform-control btn btn-lg btn-light col-4 mr-4">
