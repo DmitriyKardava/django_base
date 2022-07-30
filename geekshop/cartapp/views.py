@@ -2,7 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.urls import reverse
 from django.template.loader import render_to_string 
 from django.http import JsonResponse
-from django.http.response import HttpResponseRedirect
+from django.http.response import HttpResponseRedirect, HttpResponseBadRequest
 from django.contrib.auth.decorators import login_required
 from cartapp.models import Cart
 from mainapp.models import Product
@@ -25,7 +25,10 @@ def add(request, product_id):
     cart = Cart.objects.filter(user=request.user, product=product).first()
     if not cart:
         cart = Cart(user=request.user, product=product)
-    cart.quantity += 1
+    if cart.quantity != 1:
+        cart.quantity += 1
+    if cart.quantity > product.quantity:
+        return HttpResponseBadRequest()
     cart.save()
 
     if 'next' in request.META.get('HTTP_REFERER'):

@@ -2,32 +2,19 @@
 {% load static %}
 {% block content %}
 <div class="hero-white">
-			{% include 'mainapp/includes/main_menu_inc.html' %}
-		</div>
+	{% include 'mainapp/includes/main_menu_inc.html' %}
+</div>
 
-		<div class="details">
-			<div class="links clearfix">
-				{% include 'mainapp/includes/category_menu_inc.html' %}
-			</div>
-			<div class="category related">
-				<div class="title clearfix">
-					<h2>{{ category.name }}</h2>
-				</div>
-				<div class="related-products">
-					{% include 'mainapp/includes/product_list_inc.html' %}
-				</div>
-				<span class="explore">
-					{% if products.has_previous %}
-					<a href="{% url 'category' category.id products.previous_page_number %}">
-					Предыдущая страница
-					</a>
-					{% endif %}
-					{% if products.has_next %}
-					<a href="{% url 'category' category.id products.next_page_number%}">		
-					Следующая страница
-					</a>
-					{% endif %}
-				</span>
-			</div>
+<div class="details">
+	<div class="links clearfix">
+		{% include 'mainapp/includes/category_menu_inc.html' %}
+	</div>		
+	<div class="category related">
+		<div class="title clearfix">
+			<h2>{{ category.name }}</h2>
 		</div>
+		<div class="related-products clearfix">
+			{% include 'mainapp/includes/product_list_inc.html' %}
+		</div>
+	</div>
 {% endblock %}

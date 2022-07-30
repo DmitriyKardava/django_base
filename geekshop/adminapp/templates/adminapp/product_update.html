@@ -3,11 +3,10 @@
 {% block content %}
     <form class="form-horizontal" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ form.as_p }}
+        {{ update_form.as_p }}
         <input class="form-control" type="submit" value="сохранить">
     </form>
     <button class="btn btn-round form-control last">
-        <a href="{% url 'admin:products' 1 %}">к товарам категории</a>
+        <a href="{% url 'admin:categories' %}"> к списку продуктов</a>
     </button>
-    {{ category }}
 {% endblock %}
